@@ -1,50 +1,25 @@
 import * as React from 'react';
-import {StyleSheet, Text, View, Button, TextInput} from 'react-native';
-import Animated from 'react-native-reanimated';
-import BottomSheet from 'reanimated-bottom-sheet';
-import {
-  DefaultTheme,
-  Provider as PaperProvider,
-  Portal,
-} from 'react-native-paper';
+import {StyleSheet, Text, View, Button, TextInput, StatusBar, TouchableWithoutFeedback, SafeAreaView} from 'react-native';
+import MyBottomPopUp from './app/screens/MyBottomPopUp';
 
 export default function App() {
-  const renderContent = () => (
-    <View
-      style={{
-        backgroundColor: 'white',
-        padding: 16,
-        height: 450,
-      }}
-    >
-      <Text>Swipe down to close</Text>
+  let popupRef  = React.createRef();
+  const onShowPopup = ()=>{
+    popupRef.show();
+  }
+  
+  return(
+    <View style={{ flex: 1}}>
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView>
+          <Button title="Click Me" onPress={onShowPopup} />
+          <MyBottomPopUp ref={(target) => popupRef = target}
+            title="My Popup"
+          >
+            <Text>Boom</Text>
+          </MyBottomPopUp>
+      </SafeAreaView>
     </View>
-  );
-
-  const sheetRef = React.useRef(null);
-
-  return (
-    <>
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: 'papayawhip',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Button
-          title="Open Bottom Sheet"
-          onPress={() => sheetRef.current.snapTo(0)}
-        />
-      </View>
-      <BottomSheet
-        ref={sheetRef}
-        snapPoints={[450, 300, 0]}
-        borderRadius={10}
-        renderContent={renderContent}
-      />
-    </>
   );
 }
 
