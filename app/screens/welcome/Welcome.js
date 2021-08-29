@@ -1,10 +1,15 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native';
+import { TextInput } from 'react-native-paper';
 
-export default function Welcome() {
+export default function Welcome({formikProps}) {
     return (
-        <View style={{padding: 4}}>
-            <Text>Hi</Text>
+        <View style={{padding: 4, marginVertical: 30}}>
+             <TextInput
+                label="Email or Mobile number"
+                onChangeText={formikProps.handleChange('email_or_mobile')}
+                value={formikProps.values.email_or_mobile}
+            />
         </View>
     )
 }

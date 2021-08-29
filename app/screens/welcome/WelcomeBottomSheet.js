@@ -63,10 +63,10 @@ export default class WelcomeBottomSheet extends Component {
                                 {this.renderContent()}
                             </View>
                             <View style={styles.footer}>
-                                <Button style={{padding: 5}} color="#48566B" mode="contained" onPress={() => console.log('Pressed')}>
+                                <Button style={{padding: 5}} color="#48566B" mode="contained" onPress={ this.close }>
                                     Back
                                 </Button>
-                                <Button style={{padding: 5}} color="#48566B" mode="contained" onPress={() => console.log('Pressed')}>
+                                <Button style={{padding: 5}} color="#48566B" mode="contained" onPress={this.props.formikProps.handleSubmit}>
                                     Next
                                 </Button>
                             </View>

@@ -4,6 +4,7 @@ import { Button } from 'react-native-paper';
 import CustomBottomSheet from './core/CustomBottomSheet';
 import Welcome from './welcome/Welcome';
 import WelcomeBottomSheet from './welcome/WelcomeBottomSheet';
+import { Formik } from 'formik';
 
 export default function LoginOptions() {
     let loginOptionsPopupRef  = React.createRef();
@@ -47,11 +48,23 @@ export default function LoginOptions() {
     }
     const renderWelcomePopup = ()=>{
         return (
-                    <WelcomeBottomSheet ref={(target)=> welcomePopupRef = target}
-                        title="Welcome to Health and Glow"
-                        >
-                            <Welcome />
-                    </WelcomeBottomSheet>
+            <Formik
+                initialValues={{ email_or_mobile: '' }}
+                onSubmit={(values)=>{
+                    console.log('submitted',values);
+                }}
+            >
+                {
+                    (formikProps)=>(
+                        <WelcomeBottomSheet ref={(target)=> welcomePopupRef = target}
+                            title="WELCOME TO HEALTH & GLOW"
+                            formikProps={formikProps}
+                            >
+                                <Welcome formikProps={formikProps} />
+                        </WelcomeBottomSheet>
+                    )
+                }
+            </Formik>
         );
     }
     return (
