@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {StyleSheet, View, Button, TextInput, StatusBar, TouchableWithoutFeedback, SafeAreaView} from 'react-native';
 import MyBottomPopUp from './app/screens/MyBottomPopUp';
-
+import CustomBottomSheet from './app/screens/CustomBottomSheet';
 export default function App() {
   let popupRef  = React.createRef();
   const onShowPopup = ()=>{
@@ -13,7 +13,7 @@ export default function App() {
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <Button title="Click Me" onPress={onShowPopup} />
-        <MyBottomPopUp ref={(target) => popupRef = target}
+        {/* <MyBottomPopUp ref={(target) => popupRef = target}
           title="LOGIN"
         >
           <View style={{padding: 4}}>
@@ -39,7 +39,34 @@ export default function App() {
               />
             </View>
           </View>
-        </MyBottomPopUp>
+        </MyBottomPopUp> */}
+        <CustomBottomSheet ref={(target)=> popupRef = target}
+          title="LOGIN"
+        >
+          <View style={{padding: 4}}>
+            <View style={[styles.mt1]}>
+              <Button
+                onPress={()=>{}}
+                title="Login With Facebook"
+                color="#3B5998"
+              />
+            </View>
+            <View style={[styles.mt1]}>
+              <Button
+                onPress={()=>{}}
+                title="Login With Google"
+                color="grey"
+              />
+            </View>
+            <View style={[styles.mt1]}>
+              <Button
+                onPress={()=>{}}
+                title="Login with Mobile / Email"
+                color="#EE743C"
+              />
+            </View>
+          </View>
+        </CustomBottomSheet>
       </SafeAreaView>
     </View>
   );
