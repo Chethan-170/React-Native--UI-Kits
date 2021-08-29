@@ -3,10 +3,11 @@ import { Text, View, Dimensions, StyleSheet, TouchableWithoutFeedback } from 're
 import { Button } from 'react-native-paper';
 import Modal from 'react-native-modal';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { Formik } from 'formik';
 
 const deviceHeight = Dimensions.get('window').height;
 
-export default class WelcomeBottomSheet extends Component {
+export default class LoginBottomSheet extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -45,7 +46,7 @@ export default class WelcomeBottomSheet extends Component {
         const { children: content } = this.props;
         return <View>{ content }</View>;
     }
-    renderWelcomeBottomSheet = ()=>{
+    renderLoginBottomSheet = ()=>{
         return(
                 <Modal 
                     isVisible={this.state.showStatus}
@@ -77,7 +78,7 @@ export default class WelcomeBottomSheet extends Component {
     render() {
         return (
             <View>
-                {this.renderWelcomeBottomSheet()}
+                {this.renderLoginBottomSheet()}
             </View>
         )
     }
