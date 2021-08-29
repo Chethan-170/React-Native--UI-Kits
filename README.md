@@ -1,3 +1,3 @@
 # React-Native--UI-Kits
 ## UI Components
-- Bottom Sheet
+- Bottom Sheet 2.0
