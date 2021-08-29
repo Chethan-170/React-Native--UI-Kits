@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { Text, View, Dimensions, StyleSheet, TouchableWithoutFeedback } from 'react-native'
+import { Button } from 'react-native-paper';
 import Modal from 'react-native-modal';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const deviceHeight = Dimensions.get('window').height;
 
-export default class CustomBottomSheet extends Component {
+export default class WelcomeBottomSheet extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -28,13 +29,15 @@ export default class CustomBottomSheet extends Component {
         )
     }
     renderTitle = ()=>{
-        const { title } = this.props;
+        const { title, showCancel } = this.props;
         return (
                 <View style={styles.titleContainer}>
                     <Text style={styles.titleText}> {title} </Text>
-                    <TouchableWithoutFeedback onPress={this.close}>
-                        <AntDesign name={'close'} size={25} />
-                    </TouchableWithoutFeedback>
+                    {
+                       (showCancel) && <TouchableWithoutFeedback onPress={this.close}>
+                                            <AntDesign name={'close'} size={25} />
+                                        </TouchableWithoutFeedback>   
+                    }
                 </View>
             );
     }
@@ -50,13 +53,23 @@ export default class CustomBottomSheet extends Component {
                     swipeDirection={'down'}
                     onSwipeComplete={(e) => { this.close() }}
                     backdropOpacity= {0.5}
+                    onBackButtonPress={()=>{ this.close() }}
                     style={{ justifyContent: 'flex-end', margin: 0, }}
                 >
                     <View style={styles.container}>
-                        {/* {this.renderOutsideTouchable()} */}
                         <View style={styles.bottomViewContainer}>
-                            {this.renderTitle()}
-                            {this.renderContent()}
+                            <View style={styles.header}>
+                                {this.renderTitle()}
+                                {this.renderContent()}
+                            </View>
+                            <View style={styles.footer}>
+                                <Button style={{padding: 5}} color="#48566B" mode="contained" onPress={() => console.log('Pressed')}>
+                                    Back
+                                </Button>
+                                <Button style={{padding: 5}} color="#48566B" mode="contained" onPress={() => console.log('Pressed')}>
+                                    Next
+                                </Button>
+                            </View>
                         </View>
                     </View>
                 </Modal>
@@ -71,8 +84,6 @@ const styles = StyleSheet.create({
         width: '100%',
         borderTopRightRadius: 10,
         borderTopLeftRadius: 10,
-        paddingHorizontal: 15,
-        paddingVertical: 15,
         maxHeight: deviceHeight * 0.4
     },
     container:{
@@ -81,6 +92,22 @@ const styles = StyleSheet.create({
         justifyContent:'flex-end',
         alignItems: "center"
     },
+    footer:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        height: 70,
+        width: '100%',
+        backgroundColor: '#23344D',
+        paddingHorizontal: 10
+    },
+    footerButton:{
+        // width: 100,
+    },
+    header:{
+        paddingHorizontal: 15,
+        paddingVertical: 10
+    },
     titleContainer:{
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -88,7 +115,7 @@ const styles = StyleSheet.create({
     },
     titleText:{
         color: "#1B2E44",
-        fontSize: 20,
-        fontWeight: '400'
+        fontSize: 24,
+        fontWeight: '500'
     }
 });
