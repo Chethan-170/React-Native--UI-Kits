@@ -49,7 +49,7 @@ export default function LoginOptions() {
     const renderWelcomePopup = ()=>{
         return (
             <Formik
-                initialValues={{ email_or_mobile: '', password: '' }}
+                initialValues={{ email_or_mobile: ''}}
                 onSubmit={(values)=>{
                     console.log('submitted',values);
                 }}
@@ -71,7 +71,7 @@ export default function LoginOptions() {
         <>
             <Button style={{padding: 5}}
                 mode="contained" onPress={showLoginOptionsPopup}>
-                Click Me
+                Login Options
             </Button>
             { renderLoginOptionsPopup() }
             { renderWelcomePopup() }
