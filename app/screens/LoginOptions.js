@@ -69,9 +69,9 @@ export default function LoginOptions() {
     }
     return (
         <>
-            <Button style={{padding: 5}}
+            <Button style={{padding: 5, margin: 5}}
                 mode="contained" onPress={showLoginOptionsPopup}>
-                Login Options
+                Login Options UI
             </Button>
             { renderLoginOptionsPopup() }
             { renderWelcomePopup() }

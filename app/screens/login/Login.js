@@ -3,8 +3,7 @@ import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 import { TextInput, Text } from 'react-native-paper';
 
 export default function Login(props) {
-    const { formikProps, emailOrMobile } = props;
-    console.log('hi',emailOrMobile);
+    const { formikProps } = props;
     const [hidePassword, setHidePassword] = useState(true);
     const handleForgotPassword  = ()=>{
         console.log('here you go');
